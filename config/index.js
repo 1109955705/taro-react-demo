@@ -16,6 +16,9 @@ const config = {
     options: {},
   },
   framework: "react",
+  alias: {
+    '@/src': path.resolve(__dirname, '..', 'src/'),
+  },
   mini: {
     postcss: {
       pxtransform: {
