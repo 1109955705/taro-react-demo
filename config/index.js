@@ -1,3 +1,4 @@
+const path = require('path');
 const config = {
   projectName: "taro-react-demo",
   date: "2021-12-28",
@@ -17,7 +18,7 @@ const config = {
   },
   framework: "react",
   alias: {
-    '@/src': path.resolve(__dirname, '..', 'src/'),
+    '@/src': path.resolve(__dirname, '..', 'src/')
   },
   mini: {
     postcss: {

@@ -1,3 +1,4 @@
+import React from "react";
 const themes = {
   light: {
     foreground: "#000000",
@@ -10,3 +11,5 @@ const themes = {
 };
 
 const ThemeContext = React.createContext(themes.light);
+
+export default ThemeContext

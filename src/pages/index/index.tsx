@@ -1,6 +1,7 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
+import globalContext from '@/src/hooks/global-context';
 import logo from "./hook.png";
 
 import './index.css'
@@ -22,7 +23,8 @@ const Index = () => {
       showToast({ title: "点击了支持!" });
     });
   }, [show, showToast]);
-
+  const theme = useContext(globalContext);
+  console.log('xxxxx', theme.background)
   return (
     <View className="wrapper">
       <Image className="logo" src={logo} />

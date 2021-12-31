@@ -1,8 +1,8 @@
 import { View } from "@tarojs/components";
 import { createContext } from "react";
-// import a from '@/src';
+import globalContext from '@/src/hooks/global-context';
 import "./app.css";
-
+console.log('xxxxx', globalContext)
 interface AppTypes {
   children: React.ReactNode;
 }
