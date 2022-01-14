@@ -40,6 +40,47 @@ const config = {
         },
       },
     },
+    webpackChain(chain) {
+      console.log('chain', chain.module.rules.store.get('nomorlCss').oneOfs.store.get('0').uses.store.get('0'))
+      // chain.merge({
+      //   module: {
+      //     rule: {
+      //       myloader: {
+      //         test: /\.md$/,
+      //         use: [{
+      //           loader: 'raw-loader',
+      //           options: {}
+      //         }]
+      //       }
+      //     }
+      //   }
+      // })
+      // chain.merge({
+      //   module: {
+      //     rule: {
+      //       testCss: {
+      //         test: /\.(css|wxss|acss|ttss)(\?.*)?$/,
+      //         use: [{
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             postcssOptions: {
+      //               plugins: [
+      //                 [
+      //                   'postcss-preset-env',
+      //                   {
+      //                     // Options
+      //                   },
+      //                 ],
+      //               ],
+      //             },
+      //           }
+      //         }]
+      //       }
+      //     }
+      //   }
+      // })
+      // console.log('chain', chain.module.rules.store.get('testCss'))
+    },
   },
   h5: {
     publicPath: "/",
