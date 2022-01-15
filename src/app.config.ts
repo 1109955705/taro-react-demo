@@ -1,6 +1,7 @@
 export default {
   pages: [
     "pages/index/index",
+    'pages/apple/index',
 ],
   window: {
     backgroundTextStyle: "light",

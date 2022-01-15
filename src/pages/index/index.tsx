@@ -1,10 +1,11 @@
+import Taro, { eventCenter } from '@tarojs/taro'
 import { useCallback, useContext } from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
 import globalContext from '@/src/hooks/global-context';
 import logo from "./hook.png";
 
-import './index.css'
+import style from  './index.module.css'
 
 const Index = () => {
   const env = useEnv();
@@ -25,9 +26,15 @@ const Index = () => {
   }, [show, showToast]);
   const theme = useContext(globalContext);
   console.log('xxxxx', theme.background)
+
+  const jumpTo = () => {
+    Taro.navigateTo({
+      url: '/pages/apple/index'
+    })
+  }
   return (
-    <View className='wrapper'>
-      <Image className='logo' src={logo} />
+    <View className={style.wrapper}>
+      <Image className={style.logo} src={logo} />
       <Text className='title'>为Taro而设计的Hooks Library</Text>
       <Text className='desc'>
         目前覆盖70%官方API. 抹平部分API在H5端短板. 提供近40+Hooks!
@@ -42,6 +49,9 @@ const Index = () => {
       </Button>
       <Button className='button' onClick={handleModal}>
         使用Modal
+      </Button>
+      <Button className='button' onClick={jumpTo}>
+      jumpTo
       </Button>
     </View>
   );

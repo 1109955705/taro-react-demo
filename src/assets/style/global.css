@@ -1,0 +1,7 @@
+:root {
+  --redColor: red
+}
+
+.title {
+  color: var(--redColor)
+}
