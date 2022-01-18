@@ -1,5 +1,5 @@
 page {
-  background-color: white;
+  background-color: var(--color-1);
   padding         : 14px;
   box-sizing      : border-box;
   color           : #333;

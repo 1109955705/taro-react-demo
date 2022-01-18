@@ -1,7 +1,8 @@
-:root {
-  --redColor: red
-}
 
-.title {
-  color: var(--redColor)
+
+
+
+:root {
+	--color-1: red;
+	--clore-2: blue;
 }

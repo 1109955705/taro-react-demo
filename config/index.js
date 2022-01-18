@@ -64,7 +64,7 @@ const config = {
                 ...options.postcssOptions.plugins,
                 postcssEnv({
                   preserve: false,
-                  importFrom: 'src/assets/style/global.css',
+                  importFrom: ['src/assets/style/global.css'],
                   features: {
                     'nesting-rules': true,
                   }
