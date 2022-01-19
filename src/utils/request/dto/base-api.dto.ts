@@ -6,8 +6,13 @@ import  { RequestMethod } from '../index';
 export class ApiDto {
   baseUrl = '';
   url = '';
-  version = '';
+  header = {}
   method: RequestMethod = RequestMethod.GET;
+  dataType: 'json' | string = 'json';
+  responseType: 'text' | 'arraybuffer' | string;
+  version = '';
+  extendHeader = {};
+  reqExtendData = {};
   reqDataDto =  class {};
   resDataDto = class {};
   reqDataClassTransformOptions = { excludeExtraneousValues: true }
