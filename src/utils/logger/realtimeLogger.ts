@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro';
 const log = Taro.getRealtimeLogManager();
 
 export default {
-  info(...args: any[]) {
+  log(...args: any[]) {
     const pages = Taro.getCurrentPages();
     const curePageName = pages[pages.length - 1].route;
     console.warn('realtimeLog', curePageName, args);

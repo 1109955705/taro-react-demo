@@ -18,6 +18,12 @@ module.exports = {
         camel2DashComponentName: false
       },
       'taro-hooks',
+    ],
+    [
+      "@babel/plugin-transform-typescript",
+      {
+        "allowDeclareFields": true
+      }
     ]
   ],
 };

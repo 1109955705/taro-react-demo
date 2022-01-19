@@ -3,8 +3,8 @@ import { useCallback, useContext } from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
 import globalContext from '@/src/hooks/global-context';
+import { sendHttpRequest, LogInReqDataDto} from '@/src/utils/request';
 import logo from "./hook.png";
-
 import style from  './index.module.css'
 
 const Index = () => {
@@ -32,6 +32,10 @@ const Index = () => {
       url: '/pages/apple/index'
     })
   }
+  const test = () => {
+    const res = sendHttpRequest(LogInReqDataDto, {});
+    console.log('test:result', res);
+  }
   return (
     <View className={style.wrapper}>
       <Image className={style.logo} src={logo} />
@@ -52,6 +56,9 @@ const Index = () => {
       </Button>
       <Button className='button' onClick={jumpTo}>
       jumpTo
+      </Button>
+      <Button className='button' onClick={test}>
+      test
       </Button>
     </View>
   );
