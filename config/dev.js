@@ -3,6 +3,8 @@ module.exports = {
     NODE_ENV: '"development"',
   },
   defineConstants: {},
-  mini: {},
+  mini: {
+    sourceMapType: 'cheap-module-source-map'
+  },
   h5: {},
 };

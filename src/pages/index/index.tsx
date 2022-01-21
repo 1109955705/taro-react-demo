@@ -1,9 +1,9 @@
-import Taro, { eventCenter } from '@tarojs/taro'
+import Taro, { eventCenter, useDidShow } from '@tarojs/taro'
 import { useCallback, useContext } from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
 import globalContext from '@/src/hooks/global-context';
-import { sendHttpRequest, LogInReqDataDto} from '@/src/utils/request';
+import { sendHttpRequest, UserLoginApiDto} from '@/src/utils/request';
 import logo from "./hook.png";
 import style from  './index.module.css'
 
@@ -32,10 +32,19 @@ const Index = () => {
       url: '/pages/apple/index'
     })
   }
+  useDidShow(() => {
+    console.log('componentDidShow')
+  })
   const test = () => {
-    const res = sendHttpRequest(LogInReqDataDto, {});
-    console.log('test:result', res);
+    const pages = Taro.getCurrentPages()
+    const instance = Taro.getCurrentInstance()
+    // const res = sendHttpRequest(UserLoginApiDto, {appid: '123456', iv: '123'});
+    // console.log('test:result', res);
+    console.log('test:result', pages[0], pages[0].onshow);
+    console.log('test:result', instance);
   }
+  // test()
+
   return (
     <View className={style.wrapper}>
       <Image className={style.logo} src={logo} />

@@ -4,6 +4,7 @@ const log = Taro.getRealtimeLogManager();
 
 export default {
   log(...args: any[]) {
+    console.log('log', args)
     const pages = Taro.getCurrentPages();
     const curePageName = pages[pages.length - 1].route;
     console.warn('realtimeLog', curePageName, args);

@@ -6,6 +6,7 @@
 taro build --type weapp --watch
 
 自动更新并压缩 正式服 热更新有问题而且比较慢, 不建议在这个模式下开发调试
+NODE_ENV=development taro build --type weapp --watch
 NODE_ENV=production taro build --type weapp --watch
 
 react + ts + redux 
@@ -14,3 +15,9 @@ react + ts + redux
 ahook
 https://ahooks.js.org/zh-CN/hooks/async
 
+不推荐使用lodash, 
+https://juejin.cn/post/6982528135384268808
+
+uuid 
+用不了, 报错 Unhandled promise rejection Error: secure random number generation not supported by this browser
+use chrome, FireFox or Internet Explorer 11

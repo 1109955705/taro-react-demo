@@ -1,6 +1,6 @@
 import { validate, isURL} from 'class-validator';
 import { plainToClass, plainToInstance } from 'class-transformer';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 import  { RequestMethod } from '../index';
 
 export class ApiDto {
@@ -15,23 +15,26 @@ export class ApiDto {
   reqExtendData = {};
   reqDataDto =  class {};
   resDataDto = class {};
-  reqDataClassTransformOptions = { excludeExtraneousValues: true }
+  reqDataClassTransformOptions = { excludeExtraneousValues: true };
+  resDataClassTransformOptions = { excludeExtraneousValues: true };
   async buildRequestParams(
     data: any,
     config: any
   ): Promise<any> {
+    console.log('buildRequestParams:data', data)
     let { url } = this;
-    let $data = data;
-
-    $data = $data || {};
+    let $data = data || {};
 
     if (!isURL(this.url)) {
       url = this.baseUrl + this.url;
     }
-
-    if (!_.isEmpty(this.reqDataDto)) {
+    
+    if (Object.keys(this.reqDataDto)) {
+      console.log('1111111', $data)
       $data = plainToInstance(this.reqDataDto, $data, this.reqDataClassTransformOptions);
+      console.log('2222222', $data)
       const errors = await validate($data);
+      console.log('validate:error', errors)
       if (errors.length > 0) {
         throw new Error('Validate request-data DTO failed.',);
       }
@@ -53,28 +56,16 @@ export class ApiDto {
   }
 
   async buildResponseData(
-    response: Response<InstanceType<this['resDataDto']>>,
-    config: RequestConfig
-  ): Promise<ResponseDataType<InstanceType<this['resDataDto']>>> {
+    response: any,
+    config: any
+  ): Promise<any> {
     let $data = response.data;
 
-    if (this.resDataTransformer) {
-      $data = this.resDataTransformer({
-        api: this,
-        config,
-        response,
-      });
-    }
-
     if (typeof $data === 'object' && this.resDataDto) {
-      $data = plainToClass(this.resDataDto, $data || {}, this.resDataClassTransformOptions);
+      $data = plainToInstance(this.resDataDto, $data || {}, this.resDataClassTransformOptions);
       const errors = await validate($data as any);
       if (errors.length > 0) {
-        throw new ValidationException(
-          'Validate response-data DTO failed.',
-          errors,
-          'response_data'
-        );
+        throw new Error('Validate request-data DTO failed.',);
       }
     }
 

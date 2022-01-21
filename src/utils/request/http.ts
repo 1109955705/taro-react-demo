@@ -1,8 +1,19 @@
 import { request, showLoading, hideLoading } from '@tarojs/taro';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
-import { v4 as uuidv4 } from 'uuid';
 import logger from '../logger';
+
+function uuid() {
+  const template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+  const xAndYOnly = /[xy]/g;
+
+  return template.replace(xAndYOnly, (character) => {
+      const randomNo =  Math.floor(Math.random() * 16);
+      const newValue = character === 'x' ? randomNo : (randomNo & 0x3) | 0x8;
+
+      return newValue.toString(16);
+  });
+}
 
 export enum RequestMethod {
   GET = 'GET',
@@ -21,18 +32,21 @@ export enum RequestMethod {
 const requestInterceptor = async (params) => {
   const { api, data, config } = params;
 
-  console.log('requestInterceptor', params)
+  const requestParams = await api.buildRequestParams(data, config);
+  console.log("requestInterceptor", requestParams)
+  return requestParams;
+
+  
   // 校验参数
 
   // 拼装参数
-  return params
 
 }
 
 const requestExecutor = async (args: any) => {
-  const requestId = uuidv4();
-  logger.realtimeLogger.log('[request]', `[requestId: ${requestId}]`, ...args);
-
+  const requestId = uuid();
+  logger.realtimeLogger.log('[request]', `[requestId: ${requestId}]`);
+  return
   const result = await request({...args});
 
   logger.realtimeLogger.log('[response]', `[requestId: ${requestId}]`, result);
@@ -63,7 +77,7 @@ export const sendHttpRequest = async (
     onError?(err: any, throwError: () => any): any;
   } = {}
 ) => {
-  console.log('sendHttpRequest', Dto, data, config)
+  console.log('sendHttpRequest', data)
   if (config.showLoading) {
     if (config.loadingText) {
       showLoading({
@@ -75,11 +89,7 @@ export const sendHttpRequest = async (
   }
 
   const api = new Dto();
-  const errors = await validate(api);
-  if (errors.length > 0) {
-    throw new Error('Validate API DTO failed');
-  }
-
+  console.log('sendHttpRequest:api', api)
   try {
     const requestParams = await requestInterceptor({api, data, config});
 

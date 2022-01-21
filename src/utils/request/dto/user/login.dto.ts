@@ -12,26 +12,27 @@
 import { Expose, Type } from 'class-transformer';
 import { RequestMethod } from '@/src/utils/request';
 import { BaseApiDto } from '../base-api.dto';
-import { BaseResponseDto } from '../base-response.dto';
+import { BaseResponseDto } from '../base-response.dto'; 
 
 export class LogInReqDataDto {
+  @Expose({ name: 'secretKey' })
+  @IsString()
+  declare appid: string;
+
   @Expose()
   @IsOptional()
   @IsString()
-  declare hw_openid?: string;
+  declare code: string;
 
+  @Expose()
   @IsOptional()
   @IsString()
-  declare code?: string;
+  declare iv: string;
 
-
+  @Expose()
   @IsOptional()
   @IsString()
-  declare iv?: string;
-
-  @IsOptional()
-  @IsString()
-  declare encryptedData?: string;
+  declare encryptedData: string;
 }
 
 export class LoginResDataDto {
