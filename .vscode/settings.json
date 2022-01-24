@@ -1,3 +1,8 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true, // eslint 保存自动修复格式问题
+    "source.fixAll.stylelint": true // stylelint 保存自动修复格式问题
+  },
+  "css.validate": false
 }

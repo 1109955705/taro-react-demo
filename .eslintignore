@@ -1,3 +1,4 @@
 config
 babel.config.js
 build
+.eslintrc.js

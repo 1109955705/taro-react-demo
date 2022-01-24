@@ -19,6 +19,8 @@ const themes = {
   }
 };
 
+const a = ""
+
 const ThemeContext = createContext(themes.light);
 
 const App = ({ children }: AppTypes) => {
